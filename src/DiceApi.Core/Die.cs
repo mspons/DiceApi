@@ -5,12 +5,6 @@ namespace DiceApi.Core
     public class Die
     {
         /// <summary>
-        /// Instance of Random that we'll instantiate with the die 
-        /// and use within the Roll() method.
-        /// </summary>
-        private readonly Random rng;
-
-        /// <summary>
         /// Initializes a new instance of <see cref="Die" /> with a 
         /// specified number of sides.
         /// </summary>
@@ -23,7 +17,7 @@ namespace DiceApi.Core
 
             this.Sides = sides;
 
-            this.rng = new Random();
+            this.RandomNumberGenerator = new Random();
         }
 
         /// <summary>
@@ -33,13 +27,20 @@ namespace DiceApi.Core
         public int Sides { get; }
 
         /// <summary>
+        /// Gets an instance of Random that we instantiate with the Die 
+        /// constructor. This is used by Roll() to create a random value 
+        /// for the die roll.
+        /// </summary>
+        private Random RandomNumberGenerator { get; }
+
+        /// <summary>
         /// Rolls the die, returning its value.
         /// </summary>
         /// <returns>Result of die roll.</returns>
         public int Roll() 
         {
             // Range for Next() is inclusive on the minimum, exclusive on the maximum
-            return rng.Next(1, this.Sides + 1);
+            return this.RandomNumberGenerator.Next(1, this.Sides + 1);
         }
     }
 }
