@@ -30,9 +30,14 @@ namespace DiceApi.Core.Tests
             int sides = 6;
             var die = new Die(sides);
 
-            var result = die.Roll();
+            // Naive brute force verification that we always get a correct value
+            // within range.
+            for (int i = 0; i < 100; i++) 
+            {
+                var result = die.Roll();
 
-            Assert.True(this.WithinRange(sides, result));
+                Assert.True(this.WithinRange(sides, result));
+            }
         }
 
         /// <summary>
