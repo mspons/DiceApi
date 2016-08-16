@@ -10,11 +10,15 @@ namespace DiceApi.WebApi.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] int sides)
         {
-            if (sides == 0) {
+            // If sides weren't specified, default to six
+            if (sides == 0) 
+            {
                 sides = 6;
             }
 
-            if (sides < 0) {
+            // Negative number of sides is not allowed
+            if (sides < 0) 
+            {
                 return this.BadRequest();
             }
             
