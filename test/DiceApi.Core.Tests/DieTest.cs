@@ -5,6 +5,9 @@ using DiceApi.Core;
 
 namespace DiceApi.Core.Tests
 {
+    /// <summary>
+    /// Test class for <see cref="Die" />.
+    /// </summary>
     public class DieTest
     {
         /// <summary>
