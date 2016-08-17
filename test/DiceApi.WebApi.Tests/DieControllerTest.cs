@@ -37,6 +37,7 @@ namespace DiceApi.WebApi.Tests
             var result = sut.Get(6);
 
             Assert.Equal(typeof(OkObjectResult), result.GetType());
+            Assert.Equal(typeof(int), ((OkObjectResult)result).Value.GetType());
         }
     }
 }
