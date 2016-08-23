@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
+using DiceApi.Core;
 using DiceApi.WebApi.Controllers;
 
 namespace DiceApi.WebApi.Tests
@@ -18,7 +19,7 @@ namespace DiceApi.WebApi.Tests
         [Fact]
         public void Get_GivenSidesLessThanZero_ReturnsBadRequestResult()
         {
-            var sut = new DieController();
+            var sut = new DieController(new Die());
 
             var result = sut.Get(-1);
 
@@ -32,7 +33,7 @@ namespace DiceApi.WebApi.Tests
         [Fact]
         public void Get_GivenValidSizeValue_ReturnsOkResult()
         {
-            var sut = new DieController();
+            var sut = new DieController(new Die());
 
             var result = sut.Get(6);
 

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using DiceApi.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +31,11 @@ namespace DiceApi.WebApi
         {
             // Add framework services.
             services.AddMvc();
+
+            // Register Die class as IRollable with DI container, doing this as singleton
+            // since we want to have the same Random instance performing all our random 
+            // number generation.
+            services.AddSingleton<IRollable, Die>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

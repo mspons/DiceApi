@@ -15,9 +15,10 @@ namespace DiceApi.Core.Tests
         /// an invalid number of sides.
         /// </summary>
         [Fact]
-        public void Constructor_GivenZeroSides_ThrowsException()
+        public void Roll_GivenZeroSides_ThrowsException()
         {
-            var exception = Record.Exception(() => new Die(0));
+            var die = new Die();
+            var exception = Record.Exception(() => die.Roll(0));
 
             Assert.NotNull(exception);
             Assert.IsType<ArgumentOutOfRangeException>(exception);
@@ -31,13 +32,13 @@ namespace DiceApi.Core.Tests
         public void Roll_GivenValidSides_ReturnsValueWithinRange()
         {
             int sides = 6;
-            var die = new Die(sides);
+            var die = new Die();
 
             // Naive brute force verification that we always get a correct value
             // within range.
             for (int i = 0; i < 100; i++) 
             {
-                var result = die.Roll();
+                var result = die.Roll(sides);
 
                 Assert.True(this.WithinRange(sides, result));
             }

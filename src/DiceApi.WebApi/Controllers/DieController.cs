@@ -5,7 +5,14 @@ namespace DiceApi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     public class DieController : Controller
-    {        
+    {   
+        private IRollable Die { get; }
+
+        public DieController(IRollable die) 
+        {
+            this.Die = die;
+        }
+
         // GET api/die
         [HttpGet]
         public IActionResult Get([FromQuery] int sides)
@@ -21,10 +28,8 @@ namespace DiceApi.WebApi.Controllers
             {
                 return this.BadRequest();
             }
-            
-            var die = new Die(sides);
 
-            return this.Ok(die.Roll());
+            return this.Ok(this.Die.Roll(sides));
         }
     }
 }

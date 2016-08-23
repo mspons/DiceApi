@@ -7,7 +7,11 @@
          "DiceApi.WebApi": {
             "version":"1.0.0",
             "target":"project"
-        }       
+        },
+        "DiceApi.Core": {
+            "version":"1.0.0",
+            "target":"project"
+        }
     },
     "frameworks": {
         "netcoreapp1.0": {
